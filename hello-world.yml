@@ -1,4 +1,11 @@
 resources:
+- name: repo-trigger
+  type: git
+  check_every: 1m
+  source:
+    paths: ["*"]
+    uri: https://github.com/sebbonnet/concourse-playground.git 
+    branch: main
 - name: repo
   type: git
   source:
@@ -7,6 +14,9 @@ resources:
 jobs:
 - name: hello-world-job
   plan:
+  - get: repo-trigger
+    trigger: true
+    version: every
   - get: repo
   - task: hello-world-task
     config:

@@ -16,7 +16,6 @@ jobs:
   plan:
   - get: repo-trigger
     trigger: true
-    version: every
   - get: repo
   - task: hello-world-task
     config:

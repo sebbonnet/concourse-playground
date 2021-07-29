@@ -10,6 +10,10 @@ resources:
   type: git
   source:
     uri: https://github.com/sebbonnet/concourse-playground.git
+- name: repo2
+  type: git
+  source:
+    uri: https://github.com/sebbonnet/concourse-playground.git
 
 jobs:
 - name: hello-world-job
@@ -17,6 +21,7 @@ jobs:
   - get: repo-trigger
     trigger: true
   - get: repo
+  - get: repo2
   - task: hello-world-task
     config:
       platform: linux
